@@ -1,0 +1,178 @@
+Contents:
+var vs let vs const
+block scoping
+spread & rest operators
+array & object destructure
+Object property shorthand
+Template literals
+Arrow functions
+------------------------------------------------------------------------------
+var vs let vs const:- 
+ 
+ Hoisting & scoping :- 
+ => developer mistake
+ => if we print a variable without decalration it leads to hoisting.
+ => in var it will print undefined
+ => in let and const it will throw an error
+ => let and const are block variables
+ => var is global variable.
+ 
+ //example for hoisting:-
+ console.log(a);
+ var/let/const a =2;
+
+//example for scoping:-
+function test(){
+  let b =2;
+    if(true){
+        let c =3;
+    }
+    console.log(b,c)
+}
+test();
+----------------------------------------------------------------
+array & object destructure:-
+
+//!Array destructring
+//const fruits = ["🍎", "🍌", "🍋","🍍","🍊"]
+//!without destructuring
+/*const apple = fruits[0];
+const bannana = fruits[1];
+console.log(apple);
+console.log(bannana);
+*/
+//!with destructuring
+/*const [apple,bannana,mango,pineapple,orange]= fruits;
+console.log(apple);
+console.log(bannana);
+*/
+//*Object destructuring
+/*const obj = {
+    names: "John",
+    age: 30,
+    address:{
+        city:"chennai",
+        state: "TamilNadu"
+    }
+}
+*/
+//!without destructuring
+/*console.log(obj.name);
+console.log(obj.age);
+console.log(obj.address.city);
+*/
+//!with destructuring
+//const {key} = objectname;
+/*const {names,age,address:{city,state}} = obj;
+console.log(names);
+console.log(age);
+console.log(city);
+console.log(state);
+*/
+//? Array of objects destructuring
+/*const groceryshop = [
+    {item:"Apple",price: 25,  category:"fruits"},
+    {item:"salt",price: 50, category:"misc"},
+    {item:"tomato",price: 120,category:"vegetables"}
+];
+*/
+//!without destructuring
+/*console.log(groceryshop);
+console.log(groceryshop[0].item);
+*/
+//!with destructuring
+/*const [{item,price,category}]= groceryshop
+console.log(item);
+console.log(price);
+console.log(category);
+*/
+//? array and objects destructuring
+ /*const person = {
+    name: "john",
+    location:["chennai","madurai","trichy"]
+ }
+ const {location:[loc,locs,locc]} = person;
+ console.log(loc);
+ console.log(locs);
+ console.log(locc);
+ console.log(person.location);
+ */
+ ---------------------------------------------------------------
+Object property shorthand:-
+
+//! normal way to create object
+/*const order = {
+    id: 1000,
+    pizza: "farmhouse"
+}
+console.log(order.id,order.pizza)
+*/
+//!using shorthand property
+/*const id = 1000;
+const pizza = "farmhouse";
+const order = {
+    id, 
+    pizza
+}
+console.log(order);
+*/
+----------------------------------------------------------
+Template literals:-
+syntax:- `${expression}`
+//Template literals:- 
+/*const a = 10;
+const b = 20;
+// console.log("the value of a is ",a +"  "+"the value of b is ",b);
+console.log(`the value of a is ${a}
+the value of b is  ${b}
+the value of c is  ${a+b}`);
+*/
+--------------------------------------------------------
+spread & rest operators:-
+
+//spread operator & rest parameter:- syntax:- ...
+//! spread operator : converts a string into character array
+//?example 1
+/*const arr = ["guvi"];
+console.log(...arr);
+//? Example 2 :-
+const arr1 = ["bob","john","doe"]
+const arr2 = ["elisa","satya","leo"]
+const arr3 = [...arr1, ...arr2]
+console.log(arr3);
+*/
+//! rest parameter:- It is used inside the function to consider the remaining values.
+/*function test(a,b,...rest){
+    let sum = 0;
+    for(let i =0;i<rest.length;i=i+1){
+          sum = sum+rest[i];
+    }
+    return sum;
+}
+console.log(test(12,13,14,15,16,17))
+*/
+----------------------------------------------------------
+for in ,for of 
+
+var request = new XMLHttpRequest();
+request.open("GET", "https://restcountries.com/v3.1/all", true);
+request.send();
+request.onload = function () {
+  var data = request.response;
+  //console.log(data);
+  var result = JSON.parse(data);
+  console.log(result);
+  //for accessing multiple values use looping
+  //!using for loop
+  for (var i = 0; i < result.length; i++) {
+    console.log(result[i].area);
+  } 
+//!using for in loop
+ for (let key in result){
+    console.log(result[key].region)
+ }
+ //!using for of loop
+ for(let val of result){
+    console.log(val.subregion,val.population);
+ }
+};
